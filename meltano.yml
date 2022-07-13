@@ -1,6 +1,30 @@
 version: 1
 default_environment: dev
 project_id: 55e36492-acb9-40fb-ad22-201bb29c5903
+plugins:
+  extractors:
+  - name: tap-google-analytics
+    variant: meltano
+    pip_url: git+https://github.com/Matatika/tap-google-analytics@v0.3.0
+  transforms:
+  - name: dbt-google-analytics
+    variant: meltano
+    pip_url: https://github.com/Matatika/dbt-tap-google-analytics@v0.4.0
+  models:
+  - name: model-google-analytics
+    variant: meltano
+    pip_url: git+https://gitlab.com/meltano/model-google-analytics.git
+  transformers:
+  - name: dbt
+    pip_url: 'dbt-core~=1.0.0 dbt-postgres~=1.0.0 dbt-redshift~=1.0.0 dbt-snowflake~=1.0.0
+      dbt-bigquery~=1.0.0
+
+      '
+  files:
+  - name: files-dbt
+    pip_url: git+https://github.com/Matatika/files-dbt@v1.0.x.0
+  - name: analyze-google-analytics
+    pip_url: git+https://github.com/Matatika/analyze-google-analytics@v0.4.0
 environments:
 - name: dev
 - name: staging
